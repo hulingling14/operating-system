@@ -1,5 +1,5 @@
 public class Demo3 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Thread t=new Thread(){
             @Override
             public void run() {
@@ -13,5 +13,11 @@ public class Demo3 {
                 }
             }
         };
+        t.start();
+
+        while(true){
+            System.out.println("hello main");
+            Thread.sleep(1000);
+        }
     }
 }
