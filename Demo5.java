@@ -1,21 +1,11 @@
+import java.io.File;
+import java.util.Arrays;
+
 public class Demo5 {
-    public static void main(String[] args) throws InterruptedException {
-        Thread t = new Thread(() -> {
-            while (true) {
-                System.out.println("hello Thread");
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        t.start();
-
-        while (true) {
-            System.out.println("hello main");
-            Thread.sleep(1000);
-        }
+    public static void main(String[] args) {
+        File file = new File(".");
+        System.out.println(Arrays.toString(file.list()));
+        file = new File("./out");
+        System.out.println(Arrays.toString(file.list()));
     }
 }
