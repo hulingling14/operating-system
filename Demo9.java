@@ -1,22 +1,20 @@
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 public class Demo9 {
-    public static void main(String[] args) throws InterruptedException {
-        Thread t = new Thread(() -> {
-            for (int i = 0; i < 3; i++) {
-                System.out.println("hello Thread");
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+    public static void main(String[] args) throws IOException {
+        InputStream inputStream = null;
+        try {
+            inputStream = new FileInputStream("./text.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-        });
-
-        System.out.println(t.isAlive());
-
-        t.start();
-
-        System.out.println(t.isAlive());
-        Thread.sleep(5000);
-        System.out.println(t.isAlive());
+        }
     }
 }
